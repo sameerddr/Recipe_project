@@ -10,11 +10,19 @@ buttonClass.addEventListener('click', function(event) {
         .then(data => {
             // console.log(data);
             const food = data["meals"]
-            food.map((meal) => {
-                const div = document.createElement('div')
-                div.innerHTML = `${meal.strMeal}${meal.strInstructions}`
-                cont.append(div);
-
-            });
+            for (let i = 0; i < data["meals"].length; i++) {
+                let data1 = data["meals"][i]
+                let data2 = `<div class"main">
+                    <span>&#8220;</span>
+                        <div class="left">
+                          <h1>${data1.strMeal}</h1>
+                          <div class="left1">
+                            <img src="${data1.strMealThumb}" width="200px" height="100px"/>
+                            </div>
+                          <p>${data1.strInstructions}</p>
+                        </div>
+                      </div>`
+                container.innerHTML += data2
+            }
         }).catch(err => alert("error"))
 })
